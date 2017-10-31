@@ -28,10 +28,11 @@ public class AppHandler extends ChannelInboundHandlerAdapter {
             if (HttpHeaders.is100ContinueExpected(req)) {
                 ctx.write(new DefaultFullHttpResponse(HTTP_1_1, CONTINUE));
             }
-            System.out.print("\nHTTP Request :: "+msg);
+            System.out.println("\nHTTP Request :: "+msg.toString());
 
             boolean keepAlive = HttpHeaders.isKeepAlive(req);
             FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(CONTENT));
+            System.out.println("\nHTTP Response :: "+response.toString());
             response.headers().set(CONTENT_TYPE, "text/plain");
             response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
 
